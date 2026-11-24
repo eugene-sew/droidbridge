@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="400" viewBox="0 0 880 400">
+<rect width="100%" height="100%" rx="14" fill="#0f172a"/>
+<text x="32" y="38" fill="#f8fafc" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="18" font-weight="700">DroidBridge Hardware Utilization — MacBook Air M2 vs Itel S26 Ultra</text>
+<text x="32" y="58" fill="#94a3b8" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="12">Measured over 452 live 1 Hz samples (576x1280 H.264 VBR, E2EE ChaCha20-Poly1305, 0 dropped frames)</text>
+<rect x="32" y="74" width="12" height="12" rx="3" fill="#64748b"/>
+<text x="50" y="84" fill="#cbd5e1" font-family="-apple-system,sans-serif" font-size="11">Idle (Connected)</text>
+<rect x="174.4" y="74" width="12" height="12" rx="3" fill="#38bdf8"/>
+<text x="192.4" y="84" fill="#cbd5e1" font-family="-apple-system,sans-serif" font-size="11">Mirrored (Static Screen)</text>
+<rect x="368.0" y="74" width="12" height="12" rx="3" fill="#22c55e"/>
+<text x="386.0" y="84" fill="#cbd5e1" font-family="-apple-system,sans-serif" font-size="11">Mirrored (Active Motion, 52.5 fps)</text>
+<line x1="44.0" y1="330" x2="190.0" y2="330" stroke="#334155" stroke-width="1"/>
+<rect x="50.0" y="307.9" width="38" height="22.1" rx="5" fill="#64748b"/>
+<text x="69.0" y="301.9" text-anchor="middle" fill="#e2e8f0" font-family="ui-monospace,monospace" font-size="11" font-weight="600">2.6%</text>
+<rect x="98.0" y="298.4" width="38" height="31.6" rx="5" fill="#38bdf8"/>
+<text x="117.0" y="292.4" text-anchor="middle" fill="#e2e8f0" font-family="ui-monospace,monospace" font-size="11" font-weight="600">3.7%</text>
+<rect x="146.0" y="242.4" width="38" height="87.6" rx="5" fill="#22c55e"/>
+<text x="165.0" y="236.4" text-anchor="middle" fill="#e2e8f0" font-family="ui-monospace,monospace" font-size="11" font-weight="600">10.2%</text>
+<text x="117.0" y="352" text-anchor="middle" fill="#f1f5f9" font-family="-apple-system,sans-serif" font-size="12" font-weight="600">MacBook Air M2</text>
+<text x="117.0" y="368" text-anchor="middle" fill="#94a3b8" font-family="-apple-system,sans-serif" font-size="11">CPU (% of 1 core)</text>
+<line x1="248.0" y1="330" x2="394.0" y2="330" stroke="#334155" stroke-width="1"/>
+<rect x="254.0" y="319.2" width="38" height="10.8" rx="5" fill="#64748b"/>
+<text x="273.0" y="313.2" text-anchor="middle" fill="#e2e8f0" font-family="ui-monospace,monospace" font-size="11" font-weight="600">0.5%</text>
+<rect x="302.0" y="311.5" width="38" height="18.5" rx="5" fill="#38bdf8"/>
+<text x="321.0" y="305.5" text-anchor="middle" fill="#e2e8f0" font-family="ui-monospace,monospace" font-size="11" font-weight="600">0.9%</text>
+<rect x="350.0" y="256.5" width="38" height="73.5" rx="5" fill="#22c55e"/>
+<text x="369.0" y="250.5" text-anchor="middle" fill="#e2e8f0" font-family="ui-monospace,monospace" font-size="11" font-weight="600">3.4%</text>
+<text x="321.0" y="352" text-anchor="middle" fill="#f1f5f9" font-family="-apple-system,sans-serif" font-size="12" font-weight="600">Itel S26 Ultra</text>
+<text x="321.0" y="368" text-anchor="middle" fill="#94a3b8" font-family="-apple-system,sans-serif" font-size="11">Total CPU (%)</text>
+<line x1="452.0" y1="330" x2="598.0" y2="330" stroke="#334155" stroke-width="1"/>
+<rect x="458.0" y="213.9" width="38" height="116.1" rx="5" fill="#64748b"/>
+<text x="477.0" y="207.9" text-anchor="middle" fill="#e2e8f0" font-family="ui-monospace,monospace" font-size="11" font-weight="600">43</text>
+<rect x="506.0" y="185.9" width="38" height="144.1" rx="5" fill="#38bdf8"/>
+<text x="525.0" y="179.9" text-anchor="middle" fill="#e2e8f0" font-family="ui-monospace,monospace" font-size="11" font-weight="600">54</text>
+<rect x="554.0" y="207.7" width="38" height="122.3" rx="5" fill="#22c55e"/>
+<text x="573.0" y="201.7" text-anchor="middle" fill="#e2e8f0" font-family="ui-monospace,monospace" font-size="11" font-weight="600">46</text>
+<text x="525.0" y="352" text-anchor="middle" fill="#f1f5f9" font-family="-apple-system,sans-serif" font-size="12" font-weight="600">MacBook Air M2</text>
+<text x="525.0" y="368" text-anchor="middle" fill="#94a3b8" font-family="-apple-system,sans-serif" font-size="11">Memory (MB)</text>
+<line x1="656.0" y1="330" x2="802.0" y2="330" stroke="#334155" stroke-width="1"/>
+<rect x="662.0" y="167.4" width="38" height="162.6" rx="5" fill="#64748b"/>
+<text x="681.0" y="161.4" text-anchor="middle" fill="#e2e8f0" font-family="ui-monospace,monospace" font-size="11" font-weight="600">60</text>
+<rect x="710.0" y="195.4" width="38" height="134.6" rx="5" fill="#38bdf8"/>
+<text x="729.0" y="189.4" text-anchor="middle" fill="#e2e8f0" font-family="ui-monospace,monospace" font-size="11" font-weight="600">50</text>
+<rect x="758.0" y="188.6" width="38" height="141.4" rx="5" fill="#22c55e"/>
+<text x="777.0" y="182.6" text-anchor="middle" fill="#e2e8f0" font-family="ui-monospace,monospace" font-size="11" font-weight="600">53</text>
+<text x="729.0" y="352" text-anchor="middle" fill="#f1f5f9" font-family="-apple-system,sans-serif" font-size="12" font-weight="600">Itel S26 Ultra</text>
+<text x="729.0" y="368" text-anchor="middle" fill="#94a3b8" font-family="-apple-system,sans-serif" font-size="11">RAM PSS (MB)</text>
+</svg>

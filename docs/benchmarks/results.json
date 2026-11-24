@@ -1,0 +1,385 @@
+{
+  "macHardware": {
+    "model": "Mac14,2",
+    "chip": "Apple M2",
+    "ramGb": 16
+  },
+  "androidHardware": {
+    "deviceModel": "ITEL itel S688LN",
+    "socModel": "Spreadtrum UMS9360",
+    "androidVersion": "Android 15 (API 35)",
+    "cpuCores": 8,
+    "totalRamMb": 7707
+  },
+  "totalSamples": 501,
+  "phases": {
+    "awaiting_consent": {
+      "samples": 2,
+      "resolutions": [],
+      "mac": {
+        "cpuPercent": {
+          "n": 2,
+          "min": 1.57,
+          "avg": 2.13,
+          "p95": 2.68,
+          "max": 2.68
+        },
+        "physFootprintMb": {
+          "n": 2,
+          "min": 43.05,
+          "avg": 43.06,
+          "p95": 43.06,
+          "max": 43.06
+        },
+        "decodedFps": {
+          "n": 2,
+          "min": 0,
+          "avg": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "avgDecodeMs": null,
+        "videoMbps": {
+          "n": 2,
+          "min": 0,
+          "avg": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "rttMs": {
+          "n": 2,
+          "min": 20.66,
+          "avg": 20.66,
+          "p95": 20.66,
+          "max": 20.66
+        },
+        "thermalStates": [
+          "nominal"
+        ]
+      },
+      "android": {
+        "appCpuPercentTotal": {
+          "n": 2,
+          "min": 1.25,
+          "avg": 1.83,
+          "p95": 2.4,
+          "max": 2.4
+        },
+        "appCpuPercentSingleCore": {
+          "n": 2,
+          "min": 10.01,
+          "avg": 14.6,
+          "p95": 19.2,
+          "max": 19.2
+        },
+        "appPssMb": {
+          "n": 2,
+          "min": 127.48,
+          "avg": 132.33,
+          "p95": 137.17,
+          "max": 137.17
+        },
+        "batteryPercent": {
+          "n": 2,
+          "min": 51,
+          "avg": 51,
+          "p95": 51,
+          "max": 51
+        },
+        "batteryTempC": {
+          "n": 2,
+          "min": 29.7,
+          "avg": 29.7,
+          "p95": 29.7,
+          "max": 29.7
+        },
+        "batteryCurrentMa": {
+          "n": 2,
+          "min": -883,
+          "avg": -597,
+          "p95": -311,
+          "max": -311
+        },
+        "batteryPowerW": {
+          "n": 2,
+          "min": 1.2,
+          "avg": 2.3,
+          "p95": 3.41,
+          "max": 3.41
+        },
+        "encodedFps": {
+          "n": 2,
+          "min": 0,
+          "avg": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "videoBitrateKbps": {
+          "n": 2,
+          "min": 0,
+          "avg": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "avgEncryptUs": null,
+        "avgSocketWriteMs": null,
+        "droppedFramesDelta": 0,
+        "thermalStates": [
+          "none"
+        ]
+      }
+    },
+    "idle": {
+      "samples": 132,
+      "resolutions": [],
+      "mac": {
+        "cpuPercent": {
+          "n": 132,
+          "min": 0.71,
+          "avg": 2.57,
+          "p95": 5.28,
+          "max": 17.62
+        },
+        "physFootprintMb": {
+          "n": 132,
+          "min": 41.92,
+          "avg": 43.19,
+          "p95": 45.66,
+          "max": 54.63
+        },
+        "decodedFps": {
+          "n": 132,
+          "min": 0,
+          "avg": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "avgDecodeMs": null,
+        "videoMbps": {
+          "n": 132,
+          "min": 0,
+          "avg": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "rttMs": {
+          "n": 132,
+          "min": 7.35,
+          "avg": 25.32,
+          "p95": 92.43,
+          "max": 93.35
+        },
+        "thermalStates": [
+          "nominal"
+        ]
+      },
+      "android": {
+        "appCpuPercentTotal": {
+          "n": 132,
+          "min": 0.11,
+          "avg": 0.5,
+          "p95": 1.87,
+          "max": 8.89
+        },
+        "appCpuPercentSingleCore": {
+          "n": 132,
+          "min": 0.88,
+          "avg": 4.01,
+          "p95": 15.0,
+          "max": 71.11
+        },
+        "appPssMb": {
+          "n": 132,
+          "min": 12.61,
+          "avg": 60.47,
+          "p95": 81.98,
+          "max": 82.04
+        },
+        "batteryPercent": {
+          "n": 132,
+          "min": 51,
+          "avg": 51,
+          "p95": 51,
+          "max": 51
+        },
+        "batteryTempC": {
+          "n": 132,
+          "min": 29.2,
+          "avg": 29.73,
+          "p95": 29.9,
+          "max": 29.9
+        },
+        "batteryCurrentMa": {
+          "n": 132,
+          "min": -974,
+          "avg": -405.36,
+          "p95": -249,
+          "max": -203
+        },
+        "batteryPowerW": {
+          "n": 132,
+          "min": 0.78,
+          "avg": 1.57,
+          "p95": 2.46,
+          "max": 3.73
+        },
+        "encodedFps": {
+          "n": 132,
+          "min": 0,
+          "avg": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "videoBitrateKbps": {
+          "n": 132,
+          "min": 0,
+          "avg": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "avgEncryptUs": null,
+        "avgSocketWriteMs": null,
+        "droppedFramesDelta": 0,
+        "thermalStates": [
+          "none"
+        ]
+      }
+    },
+    "streaming_balanced": {
+      "samples": 367,
+      "resolutions": [
+        "576x1280"
+      ],
+      "mac": {
+        "cpuPercent": {
+          "n": 367,
+          "min": 0.55,
+          "avg": 4.18,
+          "p95": 17.04,
+          "max": 32.99
+        },
+        "physFootprintMb": {
+          "n": 367,
+          "min": 42.53,
+          "avg": 52.93,
+          "p95": 60.47,
+          "max": 68.08
+        },
+        "decodedFps": {
+          "n": 367,
+          "min": 0,
+          "avg": 6.45,
+          "p95": 35,
+          "max": 94
+        },
+        "avgDecodeMs": {
+          "n": 266,
+          "min": 1.52,
+          "avg": 3.74,
+          "p95": 4.94,
+          "max": 5.77
+        },
+        "videoMbps": {
+          "n": 367,
+          "min": 0,
+          "avg": 0.31,
+          "p95": 1.51,
+          "max": 9.34
+        },
+        "rttMs": {
+          "n": 367,
+          "min": 6.95,
+          "avg": 21.69,
+          "p95": 87.53,
+          "max": 110.67
+        },
+        "thermalStates": [
+          "nominal"
+        ]
+      },
+      "android": {
+        "appCpuPercentTotal": {
+          "n": 367,
+          "min": 0.55,
+          "avg": 1.06,
+          "p95": 2.78,
+          "max": 9.58
+        },
+        "appCpuPercentSingleCore": {
+          "n": 367,
+          "min": 4.41,
+          "avg": 8.48,
+          "p95": 22.23,
+          "max": 76.62
+        },
+        "appPssMb": {
+          "n": 367,
+          "min": 37.82,
+          "avg": 50.28,
+          "p95": 61.05,
+          "max": 74.17
+        },
+        "batteryPercent": {
+          "n": 367,
+          "min": 50,
+          "avg": 50.68,
+          "p95": 51,
+          "max": 51
+        },
+        "batteryTempC": {
+          "n": 367,
+          "min": 29,
+          "avg": 29.42,
+          "p95": 29.9,
+          "max": 29.9
+        },
+        "batteryCurrentMa": {
+          "n": 367,
+          "min": -1057,
+          "avg": -277.29,
+          "p95": -193,
+          "max": -169
+        },
+        "batteryPowerW": {
+          "n": 367,
+          "min": 0.65,
+          "avg": 1.07,
+          "p95": 2.19,
+          "max": 4.08
+        },
+        "encodedFps": {
+          "n": 367,
+          "min": 0,
+          "avg": 6.09,
+          "p95": 29.27,
+          "max": 90.82
+        },
+        "videoBitrateKbps": {
+          "n": 367,
+          "min": 0,
+          "avg": 315.29,
+          "p95": 1881.35,
+          "max": 9588.67
+        },
+        "avgEncryptUs": {
+          "n": 294,
+          "min": 192.41,
+          "avg": 359.32,
+          "p95": 464.2,
+          "max": 753.75
+        },
+        "avgSocketWriteMs": {
+          "n": 294,
+          "min": 0.28,
+          "avg": 0.45,
+          "p95": 0.61,
+          "max": 1.36
+        },
+        "droppedFramesDelta": 0,
+        "thermalStates": [
+          "none"
+        ]
+      }
+    }
+  }
+}

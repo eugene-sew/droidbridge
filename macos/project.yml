@@ -1,0 +1,61 @@
+name: DroidBridge
+options:
+  bundleIdPrefix: com.droidbridge
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "16.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.10"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    ENABLE_HARDENED_RUNTIME: YES
+    CODE_SIGN_STYLE: Automatic
+    CODE_SIGN_IDENTITY: "-"
+
+targets:
+  DroidBridge:
+    type: application
+    platform: macOS
+    sources:
+      - path: DroidBridge
+    info:
+      path: DroidBridge/Info.plist
+      properties:
+        CFBundleDisplayName: DroidBridge
+        CFBundleShortVersionString: "1.0.0"
+        CFBundleVersion: "1"
+        LSUIElement: true
+        NSLocalNetworkUsageDescription: "DroidBridge connects to your paired Android phone on your local Wi-Fi network for notifications, screen mirroring, and remote control."
+        NSBonjourServices:
+          - "_droidbridge._tcp"
+    entitlements:
+      path: DroidBridge/DroidBridge.entitlements
+      properties:
+        com.apple.security.app-sandbox: false
+        com.apple.security.network.server: true
+        com.apple.security.network.client: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.droidbridge.macos
+        PRODUCT_NAME: DroidBridge
+        GENERATE_INFOPLIST_FILE: NO
+        SWIFT_EMIT_LOC_STRINGS: YES
+    scheme:
+      testTargets:
+        - DroidBridgeTests
+
+  DroidBridgeTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: DroidBridgeTests
+    dependencies:
+      - target: DroidBridge
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.droidbridge.macos.tests
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/DroidBridge.app/Contents/MacOS/DroidBridge"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+        GENERATE_INFOPLIST_FILE: YES

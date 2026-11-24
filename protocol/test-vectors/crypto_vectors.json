@@ -1,0 +1,77 @@
+{
+  "description" : "DroidBridge v1 shared cryptographic test vectors (X25519 + HKDF-SHA256 + ChaCha20-Poly1305)",
+  "frames" : [
+    {
+      "frame" : {
+        "ciphertextAndTagHex" : "bd56807fe110b4406840675b6583545fec6e154e3e5f430e359b443f48787ebc1e5e377d66eb943f7c7b99cd4d61680e62344c098387692373e0dda2d997634d69227db9c7ab8257a8ceade57e1437c1fef49447ad7c401e8642a087c51614ad59212a5c08f2449b0c682cbffb9dc058d4132658207097c7ccd5ddaf1aae80133011b823a345cba663f8370b59b5a0b6ff3b18e48678d55b4912a7",
+        "counter" : 0,
+        "msgType" : 1,
+        "nonceHex" : "000000000000000000000000",
+        "payloadHex" : "7b2261707056657273696f6e223a22312e302e30222c226361706162696c6974696573223a5b226e6f74696669636174696f6e73222c226d6972726f72222c22696e707574225d2c226465766963654964223a2270686f6e652d303031222c226465766963654e616d65223a22506978656c2039222c2270726f746f636f6c56657273696f6e223a317d",
+        "plaintextHex" : "017b2261707056657273696f6e223a22312e302e30222c226361706162696c6974696573223a5b226e6f74696669636174696f6e73222c226d6972726f72222c22696e707574225d2c226465766963654964223a2270686f6e652d303031222c226465766963654e616d65223a22506978656c2039222c2270726f746f636f6c56657273696f6e223a317d",
+        "wireFrameHex" : "0000009bbd56807fe110b4406840675b6583545fec6e154e3e5f430e359b443f48787ebc1e5e377d66eb943f7c7b99cd4d61680e62344c098387692373e0dda2d997634d69227db9c7ab8257a8ceade57e1437c1fef49447ad7c401e8642a087c51614ad59212a5c08f2449b0c682cbffb9dc058d4132658207097c7ccd5ddaf1aae80133011b823a345cba663f8370b59b5a0b6ff3b18e48678d55b4912a7"
+      },
+      "keyHex" : "5ca59063b06b4c24757446d8998190622249e9ff7125904929ed76b3d1363e54",
+      "name" : "control_hello_phone_to_mac_counter_0"
+    },
+    {
+      "frame" : {
+        "ciphertextAndTagHex" : "0b481837a301416fff743c7fa831d49a137f2130bd640aa23f8a9b5dc9aafe7ba7c86fc9",
+        "counter" : 1,
+        "msgType" : 2,
+        "nonceHex" : "000000000000000000000001",
+        "payloadHex" : "7b2274223a313733323330303030303132337d",
+        "plaintextHex" : "027b2274223a313733323330303030303132337d",
+        "wireFrameHex" : "000000240b481837a301416fff743c7fa831d49a137f2130bd640aa23f8a9b5dc9aafe7ba7c86fc9"
+      },
+      "keyHex" : "f19547840db66876e56ae377df7b65fba07034d9d5a22977352d60f1df82d4dd",
+      "name" : "control_ping_mac_to_phone_counter_1"
+    },
+    {
+      "frame" : {
+        "ciphertextAndTagHex" : "f18a8244d7d35161e57a7454cb210412be3cab690f36db22b0b4c950a29dfea85636e195f4d3d9a17ced8cf225330ad4d9b1ec21f71c2388c777196f2de1",
+        "counter" : 4294967297,
+        "msgType" : 19,
+        "nonceHex" : "000000000000000100000001",
+        "payloadHex" : "7b226b6579223a22307c636f6d2e6578616d706c657c31222c2274657874223a224f6e206d792077617921227d",
+        "plaintextHex" : "137b226b6579223a22307c636f6d2e6578616d706c657c31222c2274657874223a224f6e206d792077617921227d",
+        "wireFrameHex" : "0000003ef18a8244d7d35161e57a7454cb210412be3cab690f36db22b0b4c950a29dfea85636e195f4d3d9a17ced8cf225330ad4d9b1ec21f71c2388c777196f2de1"
+      },
+      "keyHex" : "f19547840db66876e56ae377df7b65fba07034d9d5a22977352d60f1df82d4dd",
+      "name" : "control_reply_high_64bit_counter"
+    }
+  ],
+  "handshake" : {
+    "channels" : {
+      "control" : {
+        "keyMacToPhoneHex" : "f19547840db66876e56ae377df7b65fba07034d9d5a22977352d60f1df82d4dd",
+        "keyPhoneToMacHex" : "5ca59063b06b4c24757446d8998190622249e9ff7125904929ed76b3d1363e54"
+      },
+      "video" : {
+        "keyMacToPhoneHex" : "3883c0fa89753acdd0509f20fb9b5ceb88e47275ea94eb18fbbd3eb961aeee75",
+        "keyPhoneToMacHex" : "f46b455f48ecbb02f1facc50aa8f292f92f000d8f2d28eb3178ac68f9cf26276"
+      }
+    },
+    "dh1Hex" : "3bf4d1cfb6be689e969a78823230a316ea26bd7251cecaf0e21803d90b80b160",
+    "dh2Hex" : "e9a795fe1ffaeddf04f0e4cff2367801eea7ba0e6e7e97d4e2c4680da4566f5a",
+    "dh3Hex" : "1a7932975e8aabfaee76a6e9dd2d7f6b012dadd4e759369c2ba21ebfd19e2052",
+    "ikmHex" : "3bf4d1cfb6be689e969a78823230a316ea26bd7251cecaf0e21803d90b80b160e9a795fe1ffaeddf04f0e4cff2367801eea7ba0e6e7e97d4e2c4680da4566f5a1a7932975e8aabfaee76a6e9dd2d7f6b012dadd4e759369c2ba21ebfd19e2052",
+    "macEphPrivHex" : "091a2b3c4d5e6f8091a2b3c4d5e6f708192a3b4c5d6e7f90a1b2c3d4e5f60718",
+    "macEphPubHex" : "2bf1f4eeb990acd148c3e20f0b87ae49bc8762313759b6a734bf73a88fa44976",
+    "macStaticPrivHex" : "05121f2c394653606d7a8794a1aebbc8d5e2effc091623303d4a5764717e8b98",
+    "macStaticPubHex" : "c25e8b84378b21071d603dfce3f947b162b6e715240344db0a18d99259a6de23",
+    "phoneEphPrivHex" : "030e19242f3a45505b66717c87929da8b3bec9d4dfeaf5000b16212c37424d58",
+    "phoneEphPubHex" : "04ba7d1c091c7e5b601df8fb00c83f11f4b56ffefe66c6cd3c914106e55bab6f",
+    "phoneStaticPrivHex" : "01080f161d242b323940474e555c636a71787f868d949ba2a9b0b7bec5ccd3da",
+    "phoneStaticPubHex" : "c8feca81be196cdf2cadeabf13c4903d7632dce4955aa68b6e5d9adef54e2616",
+    "salt" : "droidbridge-v1"
+  },
+  "pairing" : {
+    "expectedHmacBase64Url" : "0zaUcWqxvXUgw7Sk09QkAdjGctOV9v4Epv236BJ-jGc",
+    "expectedHmacHex" : "d33694716ab1bd7520c3b4a4d3d42401d8c672d395f6fe04a6fdb7e8127e8c67",
+    "pairTokenBase64Url" : "ASNFZ4mrze_-3LqYdlQyEA",
+    "pairTokenHex" : "0123456789abcdeffedcba9876543210",
+    "phoneStaticPubBase64Url" : "yP7Kgb4ZbN8sreq_E8SQPXYy3OSVWqaLbl2a3vVOJhY",
+    "phoneStaticPubHex" : "c8feca81be196cdf2cadeabf13c4903d7632dce4955aa68b6e5d9adef54e2616"
+  }
+}

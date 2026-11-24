@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DroidBridge</string>
+    <string name="accessibility_service_description">DroidBridge uses Android Accessibility solely to perform taps, swipes, scrolling, and system navigation (Back, Home, Recents) requested from your own paired Mac over an end-to-end encrypted connection.</string>
+    <string name="ime_name">DroidBridge Keyboard</string>
+</resources>

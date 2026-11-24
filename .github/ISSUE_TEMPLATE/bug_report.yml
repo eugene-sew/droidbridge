@@ -1,0 +1,55 @@
+name: Bug report
+description: Something isn't working on your phone or Mac
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Pair the phone
+        2. Open the mirror window
+        3. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Pairing / connection
+        - Notifications
+        - Screen mirroring
+        - Remote control / keyboard
+        - Clipboard
+        - Build / install
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: phone
+    attributes:
+      label: Phone model, Android version and OEM skin
+      placeholder: Itel S26 Ultra, Android 15, itel OS 15
+    validations:
+      required: true
+  - type: input
+    id: mac
+    attributes:
+      label: Mac model and macOS version
+      placeholder: MacBook Air M2, macOS 15.1
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Paste from the Android app's Debug Log screen and/or Console.app (filter "DroidBridge"). Remove anything private.
+      render: text

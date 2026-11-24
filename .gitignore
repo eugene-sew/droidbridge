@@ -1,0 +1,16 @@
+# Build outputs
+dist/
+macos/build/
+macos/DroidBridge.xcodeproj/
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+
+# Local state & OS metadata
+scripts/.version_code
+.DS_Store
+*.jks
+*.keystore
+*.p12
+keystore.pass

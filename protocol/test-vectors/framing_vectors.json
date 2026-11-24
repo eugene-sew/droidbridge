@@ -1,0 +1,37 @@
+{
+  "description" : "DroidBridge v1 binary video\/audio payload & encrypted framing vectors",
+  "videoConfig" : {
+    "encryptedFrame" : {
+      "ciphertextAndTagHex" : "3ba1aa22cd92040cf01ce738d5bcba72e08e10fcf2f34a448121f17a2ef36600756ca196f79a683f4ba5a81f",
+      "counter" : 0,
+      "msgType" : 128,
+      "nonceHex" : "000000000000000000000000",
+      "payloadHex" : "04380960005a000000096742c028da01100f6c0000000468ce3880",
+      "plaintextHex" : "8004380960005a000000096742c028da01100f6c0000000468ce3880",
+      "wireFrameHex" : "0000002c3ba1aa22cd92040cf01ce738d5bcba72e08e10fcf2f34a448121f17a2ef36600756ca196f79a683f4ba5a81f"
+    },
+    "height" : 2400,
+    "payloadHex" : "04380960005a000000096742c028da01100f6c0000000468ce3880",
+    "ppsHex" : "68ce3880",
+    "rotation" : 90,
+    "spsHex" : "6742c028da01100f6c",
+    "width" : 1080
+  },
+  "videoFrame" : {
+    "encryptedFrame" : {
+      "ciphertextAndTagHex" : "5a105999eb2305fd953302c9a0cbb3c96b6f150f03f43161614558877c7d5aaec501580de2491dfa73",
+      "counter" : 1,
+      "msgType" : 129,
+      "nonceHex" : "000000000000000000000001",
+      "payloadHex" : "00000000499602d2010000000165888421a0000001419a22",
+      "plaintextHex" : "8100000000499602d2010000000165888421a0000001419a22",
+      "wireFrameHex" : "000000295a105999eb2305fd953302c9a0cbb3c96b6f150f03f43161614558877c7d5aaec501580de2491dfa73"
+    },
+    "flags" : 1,
+    "isKeyframe" : true,
+    "nalDataHex" : "0000000165888421a0000001419a22",
+    "payloadHex" : "00000000499602d2010000000165888421a0000001419a22",
+    "ptsMicros" : 1234567890
+  },
+  "videoKeyPhoneToMacHex" : "f46b455f48ecbb02f1facc50aa8f292f92f000d8f2d28eb3178ac68f9cf26276"
+}
