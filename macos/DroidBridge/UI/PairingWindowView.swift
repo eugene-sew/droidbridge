@@ -32,6 +32,13 @@ struct PairingWindowView: View {
                     .font(.subheadline.monospacedDigit())
                     .foregroundColor(remainingSeconds < 20 ? .orange : .secondary)
 
+                if let err = pairingManager.lastPairingError {
+                    Text(err)
+                        .font(.caption)
+                        .foregroundColor(.orange)
+                        .multilineTextAlignment(.center)
+                }
+
                 VStack(spacing: 4) {
                     Text("Manual fallback: \(session.host):\(session.port)")
                         .font(.caption.monospaced())
@@ -104,6 +111,7 @@ struct PairingWindowView: View {
         .padding(20)
         .frame(width: 420)
         .onAppear { refreshCountdown() }
+        .onChange(of: pairingManager.activeSession?.expiresAt) { _, _ in refreshCountdown() }
         .onReceive(timer) { _ in refreshCountdown() }
     }
 

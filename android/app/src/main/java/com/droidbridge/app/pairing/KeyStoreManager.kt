@@ -40,12 +40,23 @@ class KeyStoreManager(context: Context) {
         val encPriv = prefs.getString(KEY_ENC_PRIV, null)
         val ivStr = prefs.getString(KEY_ENC_IV, null)
         if (encPriv != null && ivStr != null) {
-            val priv = decryptWithKeystore(
-                Base64.decode(encPriv, Base64.NO_WRAP),
-                Base64.decode(ivStr, Base64.NO_WRAP)
-            )
-            val pub = BridgeCrypto.derivePublicKey(priv)
-            return X25519KeyPair(priv, pub)
+            val recovered = runCatching {
+                val priv = decryptWithKeystore(
+                    Base64.decode(encPriv, Base64.NO_WRAP),
+                    Base64.decode(ivStr, Base64.NO_WRAP)
+                )
+                val pub = BridgeCrypto.derivePublicKey(priv)
+                X25519KeyPair(priv, pub)
+            }.getOrNull()
+            if (recovered != null) return recovered
+
+            // Android Keystore wrap key was invalidated (e.g. lockscreen/backup/update);
+            // cleanly delete the broken keystore entry and regenerate a fresh static keypair.
+            runCatching {
+                val ks = KeyStore.getInstance(ANDROID_KEYSTORE).apply { load(null) }
+                ks.deleteEntry(KEYSTORE_ALIAS)
+            }
+            prefs.edit().remove(KEY_ENC_PRIV).remove(KEY_ENC_IV).apply()
         }
         val kp = BridgeCrypto.generateX25519KeyPair()
         val (ciphertext, iv) = encryptWithKeystore(kp.privateKey)

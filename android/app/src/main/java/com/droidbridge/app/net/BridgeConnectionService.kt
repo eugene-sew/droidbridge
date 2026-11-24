@@ -95,6 +95,11 @@ class BridgeConnectionService : LifecycleService() {
                 activeChannel.getAndSet(null)?.close()
                 reconnectSignal.trySend(Unit)
             }
+            ACTION_START -> {
+                if (activeChannel.get() == null) {
+                    reconnectSignal.trySend(Unit)
+                }
+            }
         }
         return START_STICKY
     }

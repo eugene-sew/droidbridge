@@ -12,7 +12,7 @@ val versionCodeProp = (project.findProperty("droidbridgeVersionCode") as? String
     ?: 1
 val versionNameProp = (project.findProperty("droidbridgeVersionName") as? String)
     ?: System.getenv("DROIDBRIDGE_VERSION_NAME")
-    ?: "1.0.0"
+    ?: "1.0.1"
 
 android {
     namespace = "com.droidbridge.app"

@@ -18,6 +18,7 @@ object Protocol {
     const val MODE_VIDEO: Byte = 0x03
 
     const val HANDSHAKE_STATUS_OK: Byte = 0x00
+    const val HANDSHAKE_STATUS_UNKNOWN_KEY: Byte = 0x01
 
     const val CHANNEL_CONTROL = "control"
     const val CHANNEL_VIDEO = "video"

@@ -214,8 +214,13 @@ public final class BridgeServer: ObservableObject {
                 var frame = Data(capacity: 4 + respBytes.count)
                 frame.appendBigEndian(UInt32(respBytes.count))
                 frame.append(respBytes)
-                conn.send(content: frame, completion: .contentProcessed { _ in
-                    conn.cancel()
+                self.logger.info("Pairing request from '\(req.deviceName)' -> \(resp.type) (\(resp.reason ?? "ok"))")
+                // Send clean TCP FIN (.finalMessage) and wait briefly before cancelling so
+                // Android reliably reads pair.ok over Wi-Fi instead of getting a TCP RST!
+                conn.send(content: frame, contentContext: .finalMessage, isComplete: true, completion: .contentProcessed { [weak self] _ in
+                    self?.queue.asyncAfter(deadline: .now() + 1.5) {
+                        conn.cancel()
+                    }
                 })
             }
         }
@@ -231,10 +236,17 @@ public final class BridgeServer: ObservableObject {
             let phoneStaticPub = Data(data.prefix(32))
             let phoneEphPub = Data(data.suffix(32))
 
-            // Reject unknown / unpaired phones immediately
+            // Reject unknown / unpaired phones immediately (with explicit status byte + clean FIN)
             guard let trustedPhone = self.store.findPairedPhone(publicKey: phoneStaticPub) else {
                 self.logger.warning("Rejected connection from unknown public key")
-                conn.cancel()
+                var rejectHeader = Data(capacity: 5)
+                rejectHeader.append(ProtocolConstants.magic)
+                rejectHeader.append(ProtocolConstants.handshakeStatusUnknownKey)
+                conn.send(content: rejectHeader, contentContext: .finalMessage, isComplete: true, completion: .contentProcessed { [weak self] _ in
+                    self?.queue.asyncAfter(deadline: .now() + 0.5) {
+                        conn.cancel()
+                    }
+                })
                 return
             }
 

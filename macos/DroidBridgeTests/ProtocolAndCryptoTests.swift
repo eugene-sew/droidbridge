@@ -330,4 +330,67 @@ final class ProtocolAndCryptoTests: XCTestCase {
         wait(for: [receivedBigFrame], timeout: 5.0)
         XCTAssertEqual(receivedPayloadSize, bigFrame.count)
     }
+
+    func testPairingOverRealLoopbackSocketDeliversPairOkWithoutReset() throws {
+        let suiteName = "com.droidbridge.pairnettest.\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suiteName)!
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+
+        let store = KeychainStore(service: suiteName, defaults: defaults, useDiskFallback: false)
+        let pm = PairingManager(store: store)
+        let server = BridgeServer(store: store, pairingManager: pm)
+        server.start(preferredPort: 0, advertiseBonjour: false)
+
+        let deadline = Date().addingTimeInterval(3)
+        while server.listeningPort == ProtocolConstants.defaultPort && Date() < deadline {
+            RunLoop.current.run(until: Date().addingTimeInterval(0.05))
+        }
+        let port = server.listeningPort
+        defer { server.stop() }
+
+        let session = pm.startPairingSession(port: port)
+        let phoneKP = BridgeCrypto.generateX25519KeyPair()
+        let hmac = BridgeCrypto.hmacSHA256(key: session.token, data: phoneKP.publicKey)
+        let req = PairRequestPayload(
+            type: "pair.request",
+            deviceId: "phone-loopback",
+            deviceName: "Itel S26 Ultra",
+            phoneStaticPub: BridgeCrypto.encodeBase64Url(phoneKP.publicKey),
+            mac: BridgeCrypto.encodeBase64Url(hmac)
+        )
+        let reqBytes = try JSONEncoder().encode(req)
+
+        let conn = NWConnection(host: "127.0.0.1", port: NWEndpoint.Port(rawValue: port)!, using: .tcp)
+        let q = DispatchQueue(label: "pair.client")
+        let readyExp = expectation(description: "connected")
+        conn.stateUpdateHandler = { if case .ready = $0 { readyExp.fulfill() } }
+        conn.start(queue: q)
+        wait(for: [readyExp], timeout: 3.0)
+        defer { conn.cancel() }
+
+        var wire = Data()
+        wire.append(ProtocolConstants.magic)
+        wire.append(ProtocolConstants.modePairing)
+        wire.appendBigEndian(UInt32(reqBytes.count))
+        wire.append(reqBytes)
+        conn.send(content: wire, completion: .idempotent)
+
+        let respExp = expectation(description: "received pair.ok")
+        var respType: String?
+        conn.receive(minimumIncompleteLength: 4, maximumLength: 4) { lenData, _, _, err in
+            XCTAssertNil(err)
+            guard let lenData, lenData.count == 4 else { return }
+            let n = Int(lenData.withUnsafeBytes { UInt32(bigEndian: $0.loadUnaligned(as: UInt32.self)) })
+            conn.receive(minimumIncompleteLength: n, maximumLength: n) { body, _, _, err2 in
+                XCTAssertNil(err2)
+                if let body, let resp = try? JSONDecoder().decode(PairResponsePayload.self, from: body) {
+                    respType = resp.type
+                    respExp.fulfill()
+                }
+            }
+        }
+        wait(for: [respExp], timeout: 3.0)
+        XCTAssertEqual(respType, "pair.ok")
+        XCTAssertNotNil(store.findPairedPhone(publicKey: phoneKP.publicKey))
+    }
 }

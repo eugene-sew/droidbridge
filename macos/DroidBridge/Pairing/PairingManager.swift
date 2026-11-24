@@ -17,6 +17,7 @@ public final class PairingManager: ObservableObject {
     @Published public private(set) var activeSession: ActivePairingSession?
     @Published public private(set) var pairedPhones: [PairedPhone] = []
     @Published public private(set) var lastPairingStatus: String?
+    @Published public private(set) var lastPairingError: String?
 
     private let store: KeychainStore
     private let lock = NSLock()
@@ -68,6 +69,7 @@ public final class PairingManager: ObservableObject {
         DispatchQueue.main.async {
             self.activeSession = session
             self.lastPairingStatus = nil
+            self.lastPairingError = nil
         }
         return session
     }
@@ -85,17 +87,22 @@ public final class PairingManager: ObservableObject {
     /// Validates an incoming `pair.request` payload, burns the one-time token on success,
     /// stores the phone's static public key as trusted, and returns the `PairResponsePayload`.
     public func handlePairRequest(_ req: PairRequestPayload) -> PairResponsePayload {
+        func fail(_ reason: String, human: String) -> PairResponsePayload {
+            DispatchQueue.main.async { self.lastPairingError = human }
+            return PairResponsePayload(type: "pair.error", reason: reason)
+        }
+
         lock.lock()
         guard let token = currentToken, let expires = tokenExpiresAt else {
             lock.unlock()
-            return PairResponsePayload(type: "pair.error", reason: "not_pairing")
+            return fail("not_pairing", human: "Pairing attempt rejected: no active QR session")
         }
         if Date() > expires {
             currentToken = nil
             tokenExpiresAt = nil
             lock.unlock()
             DispatchQueue.main.async { self.activeSession = nil }
-            return PairResponsePayload(type: "pair.error", reason: "expired")
+            return fail("expired", human: "QR code expired — generate a fresh QR and scan again")
         }
 
         guard req.type == "pair.request",
@@ -105,13 +112,13 @@ public final class PairingManager: ObservableObject {
               let receivedMac = BridgeCrypto.decodeBase64Url(req.mac),
               receivedMac.count == 32 else {
             lock.unlock()
-            return PairResponsePayload(type: "pair.error", reason: "invalid_request")
+            return fail("invalid_request", human: "Malformed pairing request received")
         }
 
         let expectedMac = BridgeCrypto.hmacSHA256(key: token, data: phonePub)
         guard BridgeCrypto.constantTimeEquals(expectedMac, receivedMac) else {
             lock.unlock()
-            return PairResponsePayload(type: "pair.error", reason: "bad_mac")
+            return fail("bad_mac", human: "Pairing token mismatch — scan the latest QR code")
         }
 
         // Burn token immediately on valid pairing
@@ -129,6 +136,7 @@ public final class PairingManager: ObservableObject {
         DispatchQueue.main.async {
             self.activeSession = nil
             self.pairedPhones = self.store.pairedPhones()
+            self.lastPairingError = nil
             self.lastPairingStatus = "Paired with \(phone.deviceName)"
         }
 

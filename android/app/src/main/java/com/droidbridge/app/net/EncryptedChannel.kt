@@ -118,6 +118,9 @@ class EncryptedChannel private constructor(
                     throw IOException("Invalid server magic")
                 }
                 val status = input.readByte()
+                if (status == Protocol.HANDSHAKE_STATUS_UNKNOWN_KEY) {
+                    throw IOException("Mac does not recognize this phone (unpaired). Open Setup -> Scan Pairing QR to re-pair.")
+                }
                 if (status != Protocol.HANDSHAKE_STATUS_OK) {
                     throw IOException("Server rejected handshake with status $status")
                 }

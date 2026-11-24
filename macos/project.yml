@@ -24,8 +24,8 @@ targets:
       path: DroidBridge/Info.plist
       properties:
         CFBundleDisplayName: DroidBridge
-        CFBundleShortVersionString: "1.0.0"
-        CFBundleVersion: "1"
+        CFBundleShortVersionString: "1.0.1"
+        CFBundleVersion: "2"
         LSUIElement: true
         NSLocalNetworkUsageDescription: "DroidBridge connects to your paired Android phone on your local Wi-Fi network for notifications, screen mirroring, and remote control."
         NSBonjourServices:

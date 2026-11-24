@@ -12,6 +12,7 @@ public enum ProtocolConstants {
     public static let modeVideo: UInt8 = 0x03
 
     public static let handshakeStatusOk: UInt8 = 0x00
+    public static let handshakeStatusUnknownKey: UInt8 = 0x01
 
     public static let channelControl = "control"
     public static let channelVideo = "video"

@@ -133,6 +133,7 @@ private fun DroidBridgeRoot(keyStore: KeyStoreManager) {
     var showAccessibilityDisclosure by remember { mutableStateOf(false) }
     var showUnpairConfirm by remember { mutableStateOf(false) }
     var pairingFeedback by remember { mutableStateOf<String?>(null) }
+    var pairingErrorDialog by remember { mutableStateOf<String?>(null) }
     var isPairing by remember { mutableStateOf(false) }
 
     // Refresh permissions every time user returns from Android Settings
@@ -168,16 +169,20 @@ private fun DroidBridgeRoot(keyStore: KeyStoreManager) {
         scope.launch {
             isPairing = true
             pairingFeedback = "Pairing with Mac…"
+            pairingErrorDialog = null
             try {
                 val parsed = PairingUri.parse(rawUri)
                 val info = PairingClient.pair(parsed, keyStore)
                 pairedMac = info
                 pairingFeedback = "Paired with ${info.macName}!"
-                BridgeConnectionService.start(context)
+                // Always force reconnect so an already-running service drops stale sockets & wakes immediately
+                BridgeConnectionService.reconnect(context)
                 selectedTab = 0
             } catch (e: Exception) {
                 BridgeLog.e("Pairing", "Pairing failed", e)
-                pairingFeedback = "Pairing failed: ${e.message}"
+                val msg = e.message ?: "Unknown pairing error"
+                pairingFeedback = "Pairing failed: $msg"
+                pairingErrorDialog = msg
             } finally {
                 isPairing = false
             }
@@ -329,6 +334,31 @@ private fun DroidBridgeRoot(keyStore: KeyStoreManager) {
             },
             dismissButton = {
                 TextButton(onClick = { showManualUriDialog = false }) { Text("Cancel") }
+            }
+        )
+    }
+
+    if (pairingErrorDialog != null) {
+        AlertDialog(
+            onDismissRequest = { pairingErrorDialog = null },
+            title = { Text("Pairing Failed") },
+            text = {
+                Text(
+                    "${pairingErrorDialog}\n\n" +
+                        "Check that:\n" +
+                        "• Both devices are on the same Wi-Fi (no VPN blocking LAN)\n" +
+                        "• The QR code on your Mac has not expired (2 min)\n" +
+                        "• macOS Firewall / Local Network allows DroidBridge"
+                )
+            },
+            confirmButton = {
+                Button(onClick = { pairingErrorDialog = null }) { Text("OK") }
+            },
+            dismissButton = {
+                TextButton(onClick = {
+                    pairingErrorDialog = null
+                    selectedTab = 2
+                }) { Text("View Logs") }
             }
         )
     }
@@ -615,6 +645,13 @@ private fun OnboardingChecklistScreen(
                     else "Open DroidBridge on your Mac, choose 'Pair New Phone…', and scan the QR code.",
                     style = MaterialTheme.typography.bodySmall
                 )
+                if (feedback != null) {
+                    Text(
+                        feedback,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = if (feedback.startsWith("Pairing failed")) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
+                    )
+                }
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     Button(onClick = onScanQr, enabled = !isPairing) {
                         Icon(Icons.Default.QrCodeScanner, contentDescription = null, modifier = Modifier.size(18.dp))
